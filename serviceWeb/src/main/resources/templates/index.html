@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>CRUD</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
+    <script src="functions.js"></script>
+</head>
+<body>
+	<div class= "container mt-4">
+	<br>
+	 <a th:href="@{/new}" class=" btn btn-light">Create New User</a> 
+	<br>
+	<br>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>NAME</th>
+					<th>DATE BIRTH</th>
+					<th>ACTIONS</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user:${users}">
+					<td th:text="${user.id}"></td>
+					<td th:text="${user.name}"></td>
+					<td th:text="${{user.dateBirth}}"></td>
+					<td>
+					<a th:href="@{/edit/}+${user.id}" class="btn btn-warning">Edit</a>
+					<a th:onclick="deleteUser([[${user.id}]])" class="btn btn-danger">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+</html>
